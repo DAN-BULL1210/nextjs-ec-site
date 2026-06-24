@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../my-app"
+		},
+		{
+			"path": "../../../../GitHub_Tutorial/samurai-terakoya"
+		}
+	],
+	"settings": {}
+}
