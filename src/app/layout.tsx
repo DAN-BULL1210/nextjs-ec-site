@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header"; // Headerコンポーネント
 import Footer from "@/components/Footer"; // Footerコンポーネント
 import { getAuthUser } from "@/lib/auth";
+import { CartProvider } from "@/hooks/useCart";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,9 +33,11 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+       <CartProvider>
         <Header user={user} />
         {children}
         <Footer />
+       </CartProvider> 
       </body>
     </html>
   );

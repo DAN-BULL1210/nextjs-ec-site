@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useCart } from '@/hooks/useCart';
 
 // 商品カードコンポーネントに渡すデータ（props）の型定義
 export interface ProductCardProps {
@@ -31,10 +32,15 @@ export default function ProductCard({
   showCartButton = false,
   className = ''
 }: ProductCardProps) {
-  // ProductCard.tsx の中を以下に書き換え
-//const finalImageUrl = imageUrl
-  //  ? `/uploads/${imageUrl}`
-    //: '/images/no-image.jpg';
+  //カート管理用の関数を取得
+  const { addItem, isInCart } = useCart();
+  const inCart = isInCart(id);//カートに追加済みか
+
+  //カートボタン押下時のイベントハンドラ
+  const handleCart = () => {
+    //カートに追加
+    addItem({ id, title, price, imageUrl });
+  }
 
 // 画像の指定がなければダミー画像を表示
 const finalImageUrl = imageUrl
@@ -63,10 +69,17 @@ const finalImageUrl = imageUrl
         )}
         <div className="flex justify-between items-center w-full mt-2">
           <p className="text-lg font-bold">¥{price.toLocaleString()}</p>
-          {showCartButton && <button className="
-                border border-indigo-500 hover:bg-indigo-400
-                text-indigo-500 hover:text-white
-                py-2 px-4 rounded-sm">カートへ</button>}
+            {showCartButton && (
+              <button 
+                onClick={!inCart ? handleCart : undefined}
+                disabled={inCart}
+                className={`border py-2 px-4 rounded-sm
+                  ${inCart ? 'bg-indigo-500 text-wite' : 'border-indigo-500 text-indigo-500 hover:bg-indigo-400 hover:text-white'}
+                  `}
+              >
+                {inCart ? '追加済み' : 'カートへ'}
+              </button>
+            )}
         </div>
       </div>
     </div>
