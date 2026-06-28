@@ -27,7 +27,7 @@ export default function CartItemCard({
   return (
     <div className="flex items-center gap-12 border border-gray-200 rounded p-8">
       <Image
-        src={item.imageUrl ? `/uploads/${item.imageUrl}` : '/images/no-image.jpg'}
+        src={item.imageUrl ? `${item.imageUrl}` : '/images/no-image.jpg'}
         alt={item.title}
         width={120}
         height={120}

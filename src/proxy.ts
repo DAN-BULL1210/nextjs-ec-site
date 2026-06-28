@@ -1,8 +1,7 @@
 import { type NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { verifyToken } from "./lib/jwt";
-import { AUTH_TOKEN } from "./lib/auth";
-import { redirect } from "next/dist/server/api-utils";
+import { verifyToken } from "@/lib/jwt";
+import { AUTH_TOKEN } from "@/lib/auth";
 
 //ログインが必要なページリスト
 const authPages = [
